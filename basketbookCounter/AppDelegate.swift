@@ -7,15 +7,47 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    // 自訂一個為 ref FIREBASE資料庫參考的變數
+    var ref = DatabaseReference()
+    
+    // 做一個 Dictionary 名為球隊成員的變數
+    var memberships = Dictionary<String, String>()
+    
+    override init() {
+        FirebaseApp.configure()
+        
+        
+    }
+    
+    // 自訂 更新球員 方法
+    func updateMemberships(){
+        
+        // 若要取得 firebase 資料庫內容都必須建立快照(snapshot)取得想要的內容
+        ref.child("/memberships/\((Auth.auth().currentUser?.uid)!)/").observeSingleEvent(of: .value, with: { (snapshot) in
+            // 取得球隊
+            //NSLog("\(snapshot)")
+            let num = snapshot.childrenCount
+            if(num > 0)
+            {
+                let values = (snapshot.value as? Dictionary<String, String>)!
+                self.memberships = values
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 
