@@ -68,6 +68,7 @@ class newGroupVC: UIViewController, UITextFieldDelegate {
             self.ref.updateChildValues(childUpdates)
             self.ref.child("memberships/\(uid)/\(t)/").setValue(key)
             self.navigationController?.popViewController(animated: true)
+            
         }
     }
 

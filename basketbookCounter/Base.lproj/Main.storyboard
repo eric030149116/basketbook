@@ -238,9 +238,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Hv-tU-K1t">
-                                <rect key="frame" x="156" y="97" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNN-l9-Uex">
+                                <rect key="frame" x="0.0" y="213" width="375" height="405"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" textLabel="skV-dc-Qb1" style="IBUITableViewCellStyleDefault" id="tyw-vU-vcC">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tyw-vU-vcC" id="jJ2-No-pRG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="skV-dc-Qb1">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zsr-bG-QNx" id="AD7-cK-U1W"/>
+                                    <outlet property="delegate" destination="zsr-bG-QNx" id="tQx-mL-ErM"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請先選擇你要比賽的所屬球隊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wjl-vF-2bi">
+                                <rect key="frame" x="74" y="113" width="226" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Hv-tU-K1t">
+                                <rect key="frame" x="156" y="165" width="62" height="30"/>
                                 <state key="normal" title="開始配對"/>
                                 <connections>
                                     <action selector="connectBtn:" destination="zsr-bG-QNx" eventType="touchUpInside" id="RLP-E9-doA"/>
@@ -248,15 +280,26 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wjl-vF-2bi" firstAttribute="centerX" secondItem="6Hv-tU-K1t" secondAttribute="centerX" id="9z9-Cy-oyu"/>
+                            <constraint firstAttribute="trailing" secondItem="dNN-l9-Uex" secondAttribute="trailing" id="X0U-x1-so5"/>
+                            <constraint firstItem="dNN-l9-Uex" firstAttribute="leading" secondItem="6cD-BU-IAV" secondAttribute="leading" id="Xoy-lS-uHD"/>
+                            <constraint firstItem="6Hv-tU-K1t" firstAttribute="top" secondItem="Wjl-vF-2bi" secondAttribute="bottom" constant="31" id="Z7Q-E8-uji"/>
+                            <constraint firstItem="dNN-l9-Uex" firstAttribute="bottom" secondItem="xLs-gL-ZWG" secondAttribute="top" id="ZaL-VC-Mn3"/>
+                            <constraint firstItem="Wjl-vF-2bi" firstAttribute="top" secondItem="pO4-tA-5hs" secondAttribute="bottom" constant="49" id="dnb-Xc-xgg"/>
+                            <constraint firstItem="dNN-l9-Uex" firstAttribute="top" secondItem="6Hv-tU-K1t" secondAttribute="bottom" constant="18" id="pHg-Bc-q6m"/>
+                            <constraint firstItem="6Hv-tU-K1t" firstAttribute="centerX" secondItem="dNN-l9-Uex" secondAttribute="centerX" id="td6-EU-8pX"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="配對" id="tuA-nq-P8f"/>
                     <connections>
+                        <outlet property="groupsTableView" destination="dNN-l9-Uex" id="AbN-zw-9Ub"/>
                         <segue destination="BK8-N6-0a3" kind="show" identifier="toRule" id="4n1-Xt-1zh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XJ4-eg-Dzl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3620" y="-618"/>
+            <point key="canvasLocation" x="3620" y="-618.44077961019491"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pxE-i8-uR3">
@@ -1376,6 +1419,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iDY-ZE-k06"/>
-        <segue reference="R7S-Nd-F9n"/>
+        <segue reference="uOx-SN-NKf"/>
     </inferredMetricsTieBreakers>
 </document>
